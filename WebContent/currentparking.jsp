@@ -1,8 +1,11 @@
+<%@page import="java.time.LocalDateTime"%>
+<%@page import="java.time.temporal.ChronoUnit"%>
+<%@page import="java.time.LocalTime"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ page import='java.sql.*'%>
 <%@ page import='java.io.*'%>
-<%@ page import='java.util.*'%>
+<%@ page import='java.text.*'%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -34,7 +37,7 @@
 		<div class="navbar-collapse collapse" id="collapsingNavbar">
 			<ul class="navbar-nav">
 				<li class="nav-item active"><a class="nav-link"
-					href="dashboard.jsp">DashBoard <span class="sr-only">(current)</span>
+					href="dashboard.jsp">Dashboard <span class="sr-only">(current)</span>
 				</a></li>
 				<li class="nav-item active"><a class="nav-link"
 					href="rentmyspace.jsp">Rent my space</a></li>
@@ -82,6 +85,7 @@
 			Cookie cookie = null;
 			String userId = null;
 			
+	
 			if( cookies != null ) {
 				for (int i = 0; i < cookies.length; i++) {
 					cookie = cookies[i];
@@ -94,68 +98,33 @@
 				if(userId != null) {
 					PreparedStatement statement = con.prepareStatement("SELECT * FROM booking WHERE userId = ? AND completion = 0");
 					statement.setString(1, userId);
-
-
+					
 					ResultSet rs = statement.executeQuery();
 					while (rs.next()) {
+						LocalDateTime dateTime = LocalDateTime.of(rs.getDate("datePlaced").toLocalDate(), rs.getTime("timePlaced").toLocalTime());
+						String dateT = dateTime.plusHours(Long.parseLong(rs.getString("hour"))).toString();
+						String time[] = dateT.split("T");
+						
 						out.println(
 								"<div class='card h-100 ' style='width: 20rem; margin: 10px;'><img src=");
-						out.println("'GetCarImage?carId=" + rs.getString("carId") + "'" + " class='card-img-top' style='height : 212px;' alt='...'><div class='card-body'><h5 class='card-title'> ");
-						out.println("Something" + "</h5>");
-						out.println("<p class='text-primary'>Owner Name :- " + "ownerName</p>");
-						out.println("<a href='#' class='btn btn-primary'>View Details</a></div></div>");
+						out.println("'GetCarImage?carId=" + rs.getString("carId") + "'" + " class='card-img-top' style='height : 212px;' alt='...'><div class='card-body'><h5 class='card-title'>");
+						out.println("Parking Amount :: " + rs.getString("price") + "</h5>");
+						out.println("<p class='text-primary'>Date Parking Ends :-" + time[0] + " </p>");
+						out.println("<p class='text-primary'>Time Parking Ends :-" + time[1] + " </p>"); 
+						out.println("<a href='UnPark?carId="+ rs.getString("carId") + "' class='btn btn-primary'>UnPark</a> </div></div>");
 						
 					}
 				}
-				
-			}catch (SQLException e) {
+			}catch(Exception e){
 				e.printStackTrace();
 			}
+				
 			%>
 		</div>
 	</div>
 	
-	<p class="badge badge-primary"
-		style="margin: 10px;">Current Parking Used</p>
-
-	<div class='container align-items-center' style="">
-		<div class='row'>
-			<%
-			
-			if( cookies != null ) {
-				for (int i = 0; i < cookies.length; i++) {
-					cookie = cookies[i];
-					if(cookie.getName().equals("userId")) {
-						userId = cookie.getValue();
-					}
-				}
-			} 
-			try {
-				if(userId != null) {
-					PreparedStatement statement = con.prepareStatement("SELECT * FROM booking WHERE userId = ? AND completion = 0");
-					statement.setString(1, userId);
-
-
-					ResultSet rs = statement.executeQuery();
-					while (rs.next()) {
-						out.println(
-								"<div class='card h-100' style='width: 20rem; margin: 10px;'><img src=");
-						out.println("'GetImage?parkingId=" + rs.getString("parkingId") + "'" + " class='card-img-top' style='height : 212px;' alt='...'><div class='card-body'><h5 class='card-title'> ");
-						out.println("Something" + "</h5>");
-						out.println("<p class='text-primary'>Owner Name :- " + "ownerName</p>");
-						out.println("<a href='#' class='btn btn-primary'>View Details</a></div></div>");
-						
-					}
-				}
-				
-			}catch (SQLException e) {
-				e.printStackTrace();
-			}
-			%>
-		</div>
-	</div>
 	
-
+	<script type="text/javascript" src="js/dashboard.js"></script>
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"

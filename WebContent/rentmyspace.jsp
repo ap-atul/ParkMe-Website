@@ -30,7 +30,7 @@
 		<div class="navbar-collapse collapse" id="collapsingNavbar">
 			<ul class="navbar-nav">
 				<li class="nav-item active"><a class="nav-link"
-					href="dashboard.jsp">DashBoard <span class="sr-only">(current)</span>
+					href="dashboard.jsp">Dashboard <span class="sr-only">(current)</span>
 				</a></li>
 				<li class="nav-item active"><a class="nav-link"
 					href="rentmyspace.jsp">Rent my space</a></li>

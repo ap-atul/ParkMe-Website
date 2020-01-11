@@ -43,9 +43,6 @@ public class Search extends HttpServlet {
 		ServletContext sc = request.getServletContext();
 		List<String> cityId = new ArrayList<String>();
 		
-		System.out.println("Lat ::" + lat);
-		System.out.println("Lng ::" + lng);
-		
 		try {
 			if(lat != "" && lng != "") {
 				statement = InitDB.getConnection().prepareStatement("SELECT cityId, (6371 *  acos(cos(radians(?)) * cos(radians(lat)) * cos(radians(lng) -  radians(?)) + sin(radians(?)) *  sin(radians(lat ))) ) AS distance FROM city HAVING distance < 45 ORDER BY distance LIMIT 0, 20");

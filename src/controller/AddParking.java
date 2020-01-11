@@ -102,7 +102,7 @@ public class AddParking extends HttpServlet {
 
 				finalimage = buffer.toString()+"_"+r+domainName;
 
-				path = "D:/Projects/1_ServerData/parkingImages/";
+				path = "home/atul/Projects/1_ServerData/parkingImages/";
 				savedFile = new File(path +finalimage);
 				item.write(savedFile);
 				
@@ -193,7 +193,7 @@ public class AddParking extends HttpServlet {
 				System.out.println("Error occured");
 			}
 		} else {
-			String htmlMessage = "<p class='text-center text-danger'>*** Some problem occurred11 ***</p>";
+			String htmlMessage = "<p class='text-center text-danger'>*** Some problem occurred ***</p>";
 			sc.setAttribute("rent", htmlMessage);
 
 			response.sendRedirect("rentmyspace.jsp");

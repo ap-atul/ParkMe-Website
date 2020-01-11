@@ -102,7 +102,7 @@ public class AddCar extends HttpServlet {
 
 				finalimage = buffer.toString()+"_"+r+domainName;
 
-				path = "D:/Projects/1_ServerData/carImages/";
+				path = "home/atul/Projects/1_ServerData/carImages/";
 				savedFile = new File(path +finalimage);
 				item.write(savedFile);
 				

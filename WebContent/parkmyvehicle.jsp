@@ -34,7 +34,7 @@
 		<div class="navbar-collapse collapse" id="collapsingNavbar">
 			<ul class="navbar-nav">
 				<li class="nav-item active"><a class="nav-link"
-					href="dashboard.jsp">DashBoard <span class="sr-only">(current)</span>
+					href="dashboard.jsp">Dashboard <span class="sr-only">(current)</span>
 				</a></li>
 				<li class="nav-item active"><a class="nav-link"
 					href="rentmyspace.jsp">Rent my space</a></li>
@@ -101,6 +101,7 @@
 		</div>
 	</div>
 
+<script type="text/javascript" src="js/dashboard.js"></script>
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src='https://code.jquery.com/jquery-3.4.1.slim.min.js'

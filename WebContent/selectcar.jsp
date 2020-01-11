@@ -47,8 +47,8 @@
 		
 		Cookie cookie = null;
 		String userId = null;
-		List<String> cars = new ArrayList<>();
-		List<String> carIds = new ArrayList<>();
+		List<String> cars = new ArrayList<String>();
+		List<String> carIds = new ArrayList<String>();
 
 		if( cookies != null ) {
 			for (int i = 0; i < cookies.length; i++) {

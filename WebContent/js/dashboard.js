@@ -1,19 +1,6 @@
 window.onload = function() {
 	checkCookie();
-
-	if (navigator.geolocation) {
-		navigator.geolocation.getCurrentPosition(function (position) {
-			document.getElementById("lat").value =  position.coords.latitude;
-			document.getElementById("lng").value =  position.coords.longitude;
-		});
-	} else {
-		x.innerHTML = "Geolocation is not supported by this browser.";
-	}
-
-	console.log(document.getElementById("lat").value);
-	console.log(document.getElementById("lng").value);
 }
-
 function checkCookie() {
 	var username = getCookie("userId");
 

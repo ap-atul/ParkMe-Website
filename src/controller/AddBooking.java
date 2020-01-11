@@ -57,7 +57,7 @@ public class AddBooking extends HttpServlet {
 		
 		//add booking
 		if(userId != null) {
-				statement = InitDB.getConnection().prepareStatement("INSERT INTO booking(parkingId, userId, carId, datePlaced, timePlaced, price) values (?, ?, ?, ?, ?, ?)");
+				statement = InitDB.getConnection().prepareStatement("INSERT INTO booking(parkingId, userId, carId, datePlaced, timePlaced, price, hour) values (?, ?, ?, ?, ?, ?, ?)");
 	
 				statement.setString(1, parkingId);
 				statement.setString(2, userId);
@@ -65,6 +65,7 @@ public class AddBooking extends HttpServlet {
 				statement.setString(4, dateAdded);
 				statement.setString(5, timeAdded);
 				statement.setString(6, totalPrice);
+				statement.setString(7, inputHour);
 			
 			
 				int action = statement.executeUpdate();

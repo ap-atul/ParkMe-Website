@@ -34,7 +34,7 @@
 		<div class="navbar-collapse collapse" id="collapsingNavbar">
 			<ul class="navbar-nav">
 				<li class="nav-item active"><a class="nav-link"
-					href="dashboard.jsp">DashBoard <span class="sr-only">(current)</span>
+					href="dashboard.jsp">Dashboard <span class="sr-only">(current)</span>
 				</a></li>
 				<li class="nav-item active"><a class="nav-link"
 					href="rentmyspace.jsp">Rent my space</a></li>
@@ -71,7 +71,7 @@
 
 
 	<p class="badge badge-primary"
-		style="margin: 10px;">Your Parking History</p>
+		style="margin: 10px;">Your Car Parking History</p>
 
 	<div class='container align-items-center' style="">
 		<div class='row'>
@@ -81,6 +81,8 @@
 			Cookie[] cookies = request.getCookies();
 			Cookie cookie = null;
 			String userId = null;
+			PreparedStatement statement = null;
+			ResultSet rs = null;
 			
 			if( cookies != null ) {
 				for (int i = 0; i < cookies.length; i++) {
@@ -92,18 +94,62 @@
 			} 
 			try {
 				if(userId != null) {
-					PreparedStatement statement = con.prepareStatement("SELECT * from booking where userId = ? AND completion = 1");
+					statement = con.prepareStatement("SELECT * from booking where userId = ? AND completion = 1");
 					statement.setString(1, userId);
 
 
-					ResultSet rs = statement.executeQuery();
+					rs = statement.executeQuery();
 					while (rs.next()) {
 						out.println(
 								"<div class='card h-100' style='width: 20rem; margin: 10px;'><img src=");
-						out.println("'GetCarImage?carId=" + rs.getString("carId") + "'" + " class='card-img-top' style='height : 212px;' alt='...'><div class='card-body'><h5 class='card-title'> ");
-						out.println("Something" + "</h5>");
-						out.println("<p class='text-primary'>Owner Name :- " + "ownerName</p>");
-						out.println("<a href='#' class='btn btn-primary'>View Details</a></div></div>");
+						out.println("'GetCarImage?carId=" + rs.getString("carId") + "'" + " class='card-img-top' style='height : 212px;' alt='...'><div class='card-body'>");
+						out.println("<p class='text-primary'>Amount Paid :- " + rs.getString("price"));
+						out.println("<br> Date of parking :-" + rs.getString("datePlaced"));
+						out.println("<br> Time of parking :-" + rs.getString("timePlaced"));
+						out.println("<br> Hour(s) parked :-" + rs.getString("hour"));
+						out.println("</p></div></div>");
+						
+					}
+				}
+				
+			}catch (SQLException e) {
+				e.printStackTrace();
+			}
+			%>
+		</div>
+	</div>
+	
+	<p class="badge badge-primary"
+		style="margin: 10px;">Your Space History</p>
+	<div class='container align-items-center' style="">
+		<div class='row'>
+			<%
+			
+			if( cookies != null ) {
+				for (int i = 0; i < cookies.length; i++) {
+					cookie = cookies[i];
+					if(cookie.getName().equals("userId")) {
+						userId = cookie.getValue();
+					}
+				}
+			} 
+			try {
+				if(userId != null) {
+					statement = con.prepareStatement("SELECT * from parking where userId = ?");
+					statement.setString(1, userId);
+
+
+					rs = statement.executeQuery();
+					while (rs.next()) {
+						out.println(
+								"<div class='card h-100' style='width: 20rem; margin: 10px;'><img src=");
+						out.println("'GetImage?parkingId=" + rs.getString("parkingId") + "'" + " class='card-img-top' style='height : 212px;' alt='...'><div class='card-body'><h5 class='card-title'> ");
+						out.println(rs.getString("placeName") + "</h5>");
+						out.println("<p class='text-primary'>Owner Name :- " + rs.getString("ownerName"));
+						out.println("<br>Number of Spots :- " + rs.getString("spots"));
+						out.println("<br>Fare :- " + rs.getString("fare")+ "Rs");
+						out.println("<br>Contact :- " + rs.getString("contact")+ "</p>");
+						out.println("<a href='oldparkedcars.jsp?parkingId="+ rs.getString("parkingId") +"' class='btn btn-primary'>View Details</a></div></div>");
 						
 					}
 				}
@@ -116,6 +162,7 @@
 	</div>
 	
 
+<script type="text/javascript" src="js/dashboard.js"></script>
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"

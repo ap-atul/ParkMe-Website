@@ -98,7 +98,7 @@ public class Register extends HttpServlet {
 
 				finalimage = buffer.toString()+"_"+r+domainName;
 
-				path = "D:/Projects/1_ServerData/userImages/";
+				path = "home/atul/Projects/1_ServerData/userImages/";
 				savedFile = new File(path +finalimage);
 				item.write(savedFile);
 				

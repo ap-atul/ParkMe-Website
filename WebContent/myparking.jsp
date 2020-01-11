@@ -34,7 +34,7 @@
 		<div class="navbar-collapse collapse" id="collapsingNavbar">
 			<ul class="navbar-nav">
 				<li class="nav-item active"><a class="nav-link"
-					href="dashboard.jsp">DashBoard <span class="sr-only">(current)</span>
+					href="dashboard.jsp">Dashboard <span class="sr-only">(current)</span>
 				</a></li>
 				<li class="nav-item active"><a class="nav-link"
 					href="rentmyspace.jsp">Rent my space</a></li>
@@ -72,7 +72,7 @@
 	</nav>
 	
 
-		<a class="badge badge-primary" href="rentmyspace.jsp" style="margin:10px;">Add New Parking</a>
+		<a class="badge badge-primary" href="rentmyspace.jsp" style="margin:10px;">Click here to add new parking</a>
 		
 		<div class='container align-items-center' style="">
 		<div class='row'>
@@ -107,7 +107,7 @@
 						out.println("<br>Number of Spots :- " + rs.getString("spots"));
 						out.println("<br>Fare :- " + rs.getString("fare")+ "Rs");
 						out.println("<br>Contact :- " + rs.getString("contact")+ "</p>");
-						out.println("<a href='#' class='btn btn-primary'>View Details</a></div></div>");
+						out.println("<a href='parkedcars.jsp?parkingId="+ rs.getString("parkingId") +"' class='btn btn-primary'>View Details</a></div></div>");
 						
 					}
 				}
@@ -119,6 +119,7 @@
 		</div>
 	</div>
 
+<script type="text/javascript" src="js/dashboard.js"></script>
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
