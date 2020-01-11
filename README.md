@@ -19,5 +19,4 @@
 4. Run the project on your Tomcat Server.
 
 ## Help
-If any problem occurred, feel free to contact me on 
-Gmail : atulpatare99@gmail.com
+If any problem occurred, feel free to contact me at atulpatare99@gmail.com
