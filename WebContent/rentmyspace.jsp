@@ -63,6 +63,7 @@
 			%>
 			<%=application.getAttribute("rent")%>
 			<%
+				application.removeAttribute("rent");
 				}
 			%>
 			<div class="form-group">

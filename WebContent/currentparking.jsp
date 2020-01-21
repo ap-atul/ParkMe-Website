@@ -51,8 +51,7 @@
 			String email = (String)session.getAttribute("email");%>
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item active login-text"><a class="nav-link"
-					href="<%if(email == null) out.println("login.jsp"); %>">
-						<%out.println(email); %>
+					href="<%if(email == null) out.println("login.jsp"); %>"> <%out.println(email); %>
 				</a></li>
 			</ul>
 		</div>
@@ -73,8 +72,8 @@
 	</nav>
 
 
-	<p class="badge badge-primary"
-		style="margin: 10px;">Current Parked Cars</p>
+	<p class="badge badge-primary" style="margin: 10px;">Current Parked
+		Cars</p>
 
 	<div class='container align-items-center border-bottom pt-5' style="">
 		<div class='row'>
@@ -117,13 +116,15 @@
 				}
 			}catch(Exception e){
 				e.printStackTrace();
+			}finally{
+				con.close();
 			}
 				
 			%>
 		</div>
 	</div>
-	
-	
+
+
 	<script type="text/javascript" src="js/dashboard.js"></script>
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->

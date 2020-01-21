@@ -19,34 +19,38 @@ import db.InitDB;
 public class UnPark extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private PreparedStatement statement;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public UnPark() {
-        super();
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public UnPark() {
+		super();
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String carId = request.getParameter("carId");
-		
+
 		try {
 			statement = InitDB.getConnection().prepareStatement("UPDATE booking SET completion = 1 WHERE carId = ?");
-		
+
 			statement.setString(1, carId);
-			
+
 			int action = statement.executeUpdate();
-			if(action > 0) {
+			if (action > 0) {
 				response.sendRedirect("currentparking.jsp");
 			} else {
 				response.sendRedirect("currentparking.jsp");
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			InitDB.closeConnection();
 		}
 	}
 

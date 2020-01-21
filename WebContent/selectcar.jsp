@@ -71,7 +71,9 @@
 					carIds.add(rs.getString("carId"));
 				}
 			}
-		}catch(Exception e){e.printStackTrace();}
+		}catch(Exception e){e.printStackTrace();}finally{
+			con.close();
+		}
 	%>
 
 	<div class='container' style='margin-top: 10px; padding: 10px;'>
@@ -84,8 +86,7 @@
 				<div class="form-group col-md-6">
 					<label for="inputHour">Enter Number of Hours</label> <input
 						type="number" min=1 value=1 class="form-control" name="inputHour"
-						id="inputHour" required> 
-						<input type="hidden" name="price"
+						id="inputHour" required> <input type="hidden" name="price"
 						id="price" value="<%out.println(fare);%>">
 				</div>
 
@@ -95,17 +96,17 @@
 						id="priceOutput" readonly="readonly">
 				</div>
 
-				
+
 				<div class="form-row col-md-2">
 					<button type="button" onClick="cal()"
 						class="btn btn-primary btn-block">Calculate</button>
 				</div>
-			
+
 			</div>
-			
+
 			<div class="form-row">
-			<label for="car-option">Select car to book</label>
-				<select class="form-control" name="carId">
+				<label for="car-option">Select car to book</label> <select
+					class="form-control" name="carId">
 					<%
 						for(int i = 0; i < cars.size(); i++){
 							out.println("<option value = '" + carIds.get(i) + "'>" + cars.get(i) + "</option>");
@@ -113,11 +114,12 @@
 					%>
 				</select>
 			</div>
-			
+
 			<div class="form-row">
-			<button type="submit" class="btn btn-primary btn-block" style="margin-top: 10px;">Book</button>
+				<button type="submit" class="btn btn-primary btn-block"
+					style="margin-top: 10px;">Book</button>
 			</div>
-			
+
 		</form>
 	</div>
 

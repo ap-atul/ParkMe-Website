@@ -46,6 +46,8 @@ CREATE TABLE booking(
 	datePlaced DATE NOT NULL,
 	timePlaced TIME NOT NULL,
 	price DECIMAL(15, 2) NOT NULL,
+	completion BOOL DEFAULT 0,
+	payment BOOL DEFAULT 0,
 	hour INTEGER NOT NULL
 );
 

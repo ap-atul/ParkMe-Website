@@ -44,18 +44,24 @@
 
 
 			</ul>
-			<%session = request.getSession();
-			String email = (String)session.getAttribute("email");%>
+			<%
+				session = request.getSession();
+				String email = (String) session.getAttribute("email");
+			%>
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item active login-text"><a class="nav-link"
-					href="<%if(email == null) out.println("login.jsp"); %>"><%out.println(email); %></a></li>
+					href="<%if (email == null)
+				out.println("login.jsp");%>">
+						<%
+							out.println(email);
+						%>
+				</a></li>
 			</ul>
 		</div>
 	</nav>
 
 	<!--  Search bar -->
-	<div class='container border-bottom pt-5'
-		style='padding: 10px;'>
+	<div class='container border-bottom pt-5' style='padding: 10px;'>
 		<form action='Search' method='POST'>
 			<div class='form-row'>
 				<div class='form-group col-md-4'>
@@ -82,26 +88,27 @@
 			<%
 				if (application.getAttribute("parking") != null) {
 					ResultSet rs = (ResultSet) application.getAttribute("parking");
-					
+
 					while (rs.next()) {
-						out.println(
-								"<div class='card h-100' style='width: 20rem; margin: 10px;'><img src=");
-						out.println("'GetImage?parkingId=" + rs.getString("parkingId") + "'" + " class='card-img-top' style='height : 212px;' alt='...'><div class='card-body'><h5 class='card-title'> ");
+						out.println("<div class='card h-100' style='width: 20rem; margin: 10px;'><img src=");
+						out.println("'GetImage?parkingId=" + rs.getString("parkingId") + "'"
+								+ " class='card-img-top' style='height : 212px;' alt='...'><div class='card-body'><h5 class='card-title'> ");
 						out.println(rs.getString("placeName") + "</h5>");
 						out.println("<p class='text-primary'>Owner Name :- " + rs.getString("ownerName"));
 						out.println("<br>Number of Spots :- " + rs.getString("spots"));
-						out.println("<br>Fare :- " + rs.getString("fare")+ "Rs");
-						out.println("<br>Contact :- " + rs.getString("contact")+ "</p>");
-						out.println("<a href='SelectCar?parkingId="+ rs.getString("parkingId") + "' class='btn btn-primary'>Book</a></div></div>");
+						out.println("<br>Fare :- " + rs.getString("fare") + "Rs");
+						out.println("<br>Contact :- " + rs.getString("contact") + "</p>");
+						out.println("<a href='SelectCar?parkingId=" + rs.getString("parkingId")
+								+ "' class='btn btn-primary'>Book</a></div></div>");
 					}
-				} else{
+				} else {
 					out.println("<p text-primary> No Records Found </p>");
 				}
 			%>
 		</div>
 	</div>
 
-<script type="text/javascript" src="js/dashboard.js"></script>
+	<script type="text/javascript" src="js/dashboard.js"></script>
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src='https://code.jquery.com/jquery-3.4.1.slim.min.js'

@@ -44,13 +44,15 @@ public class AddParking extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		FileItemFactory factory = new DiskFileItemFactory();
 		ServletFileUpload upload = new ServletFileUpload(factory);
 		List<FileItem> items = null;
-		
+
 		try {
 			items = upload.parseRequest(request);
 
@@ -69,13 +71,16 @@ public class AddParking extends HttpServlet {
 			}
 
 			uploadImage(formData, fileData, request, response);
-			
-		}catch (Exception e) {
+
+		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			InitDB.closeConnection();
 		}
 	}
 
-	private void uploadImage(HashMap<String, String> formData, List<FileItem> fileData, HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException {
+	private void uploadImage(HashMap<String, String> formData, List<FileItem> fileData, HttpServletRequest request,
+			HttpServletResponse response) throws IOException, SQLException {
 
 		String path = null;
 		String finalimage = null;
@@ -83,41 +88,40 @@ public class AddParking extends HttpServlet {
 		Iterator<FileItem> itr = fileData.iterator();
 
 		try {
-				FileItem item = (FileItem) itr.next();
-				String itemName = item.getName();
-				Random generator = new Random();
-				int r = Math.abs(generator.nextInt());
+			FileItem item = (FileItem) itr.next();
+			String itemName = item.getName();
+			Random generator = new Random();
+			int r = Math.abs(generator.nextInt());
 
-				String reg = "[.*]";
-				String replacingtext = "";
-				Pattern pattern = Pattern.compile(reg);
-				Matcher matcher = pattern.matcher(itemName);
-				StringBuffer buffer = new StringBuffer();
+			String reg = "[.*]";
+			String replacingtext = "";
+			Pattern pattern = Pattern.compile(reg);
+			Matcher matcher = pattern.matcher(itemName);
+			StringBuffer buffer = new StringBuffer();
 
-				while (matcher.find()) {
-					matcher.appendReplacement(buffer, replacingtext);
-				}
-				int IndexOf = itemName.indexOf("."); 
-				String domainName = itemName.substring(IndexOf);
-
-				finalimage = buffer.toString()+"_"+r+domainName;
-
-				path = "home/atul/Projects/1_ServerData/parkingImages/";
-				savedFile = new File(path +finalimage);
-				item.write(savedFile);
-				
-				if(savedFile.exists())
-					processFormData(formData, path + finalimage, request, response);
-				
-				
-			}catch (Exception e) {
-				System.out.println(e.getMessage());
+			while (matcher.find()) {
+				matcher.appendReplacement(buffer, replacingtext);
 			}
+			int IndexOf = itemName.indexOf(".");
+			String domainName = itemName.substring(IndexOf);
+
+			finalimage = buffer.toString() + "_" + r + domainName;
+
+			path = "home/atul/Projects/1_ServerData/parkingImages/";
+			savedFile = new File(path + finalimage);
+			item.write(savedFile);
+
+			if (savedFile.exists())
+				processFormData(formData, path + finalimage, request, response);
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 	private void processFormData(HashMap<String, String> formData, String imagePath, HttpServletRequest request,
 			HttpServletResponse response) throws SQLException, IOException {
-		
+
 		System.out.println("Processing form");
 		String ownerName = formData.get("inputName");
 		String contact = formData.get("inputContact");
@@ -138,18 +142,20 @@ public class AddParking extends HttpServlet {
 		Cookie[] cookies = request.getCookies();
 		Cookie cookie = null;
 
-		if( cookies != null ) {
+		if (cookies != null) {
 			for (int i = 0; i < cookies.length; i++) {
 				cookie = cookies[i];
-				if(cookie.getName().equals("userId")) {
+				if (cookie.getName().equals("userId")) {
 					userId = cookie.getValue();
 				}
 			}
-		} 
+		}
 
-		//adding city entry
-		if(userId != null  && image != null) {
-			statement = InitDB.getConnection().prepareStatement("INSERT INTO city(city, state, lat, lng, pincode, address) values (?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+		// adding city entry
+		if (userId != null && image != null) {
+			statement = InitDB.getConnection().prepareStatement(
+					"INSERT INTO city(city, state, lat, lng, pincode, address) values (?, ?, ?, ?, ?, ?)",
+					Statement.RETURN_GENERATED_KEYS);
 
 			statement.setString(1, city);
 			statement.setString(2, state);
@@ -160,10 +166,11 @@ public class AddParking extends HttpServlet {
 
 			int action = statement.executeUpdate();
 			ResultSet rs = statement.getGeneratedKeys();
-			if(action > 0 && rs.next()) {
+			if (action > 0 && rs.next()) {
 				cityId = String.valueOf(rs.getInt(1));
 
-				statement = InitDB.getConnection().prepareStatement("INSERT INTO parking(placeName, ownerName, userId, cityId, spots, fare, contact, image) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+				statement = InitDB.getConnection().prepareStatement(
+						"INSERT INTO parking(placeName, ownerName, userId, cityId, spots, fare, contact, image) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
 
 				statement.setString(1, placeName);
 				statement.setString(2, ownerName);
@@ -176,7 +183,7 @@ public class AddParking extends HttpServlet {
 
 				action = statement.executeUpdate();
 
-				if(action > 0) {	
+				if (action > 0) {
 
 					System.out.println("Parking INSERTED");
 					String htmlMessage = "<p class='text-center text-danger'>*** Your Parking Space is registered ***</p>";
@@ -198,7 +205,7 @@ public class AddParking extends HttpServlet {
 
 			response.sendRedirect("rentmyspace.jsp");
 		}
-		
+
 	}
 
 }

@@ -23,53 +23,57 @@ public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private PreparedStatement statement;
 	private ResultSet resultSet;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public Login() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public Login() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String password = request.getParameter("password");
 		String email = request.getParameter("email");
-		
+
 		try {
 			statement = InitDB.getConnection().prepareStatement("SELECT password, userId FROM user WHERE email = ?");
 			statement.setString(1, email);
-			
+
 			resultSet = statement.executeQuery();
 			ServletContext sc = request.getServletContext();
-			
-			if(resultSet.next()) {
-				if(resultSet.getString("password").equals(password)) {
-					HttpSession session=request.getSession(); 
+
+			if (resultSet.next()) {
+				if (resultSet.getString("password").equals(password)) {
+					HttpSession session = request.getSession();
 					Cookie ck = new Cookie("userId", resultSet.getString("userId"));
 					response.addCookie(ck);
 					session.setAttribute("email", email);
 					session.setAttribute("userId", resultSet.getString("userId"));
-		        
+
 					response.sendRedirect("dashboard.jsp");
 				} else {
 					String htmlMessage = "<p class='text-center text-danger'>*** Password Does Not Match ***</p>";
-					
+
 					sc.setAttribute("messages", htmlMessage);
 					response.sendRedirect("login.jsp");
 				}
 			} else {
 				String htmlMessage = "<p class='text-center text-danger'>*** Invalid Credentials ***</p>";
-				
+
 				sc.setAttribute("messages", htmlMessage);
 				response.sendRedirect("login.jsp");
 			}
-			
-		}catch(Exception e) {
+
+		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			InitDB.closeConnection();
 		}
 	}
 

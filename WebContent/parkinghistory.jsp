@@ -48,8 +48,7 @@
 			String email = (String)session.getAttribute("email");%>
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item active login-text"><a class="nav-link"
-					href="<%if(email == null) out.println("login.jsp"); %>">
-						<%out.println(email); %>
+					href="<%if(email == null) out.println("login.jsp"); %>"> <%out.println(email); %>
 				</a></li>
 			</ul>
 		</div>
@@ -70,8 +69,8 @@
 	</nav>
 
 
-	<p class="badge badge-primary"
-		style="margin: 10px;">Your Car Parking History</p>
+	<p class="badge badge-primary" style="margin: 10px;">Your Car
+		Parking History</p>
 
 	<div class='container align-items-center' style="">
 		<div class='row'>
@@ -118,9 +117,9 @@
 			%>
 		</div>
 	</div>
-	
-	<p class="badge badge-primary"
-		style="margin: 10px;">Your Space History</p>
+
+	<p class="badge badge-primary" style="margin: 10px;">Your Space
+		History</p>
 	<div class='container align-items-center' style="">
 		<div class='row'>
 			<%
@@ -156,13 +155,15 @@
 				
 			}catch (SQLException e) {
 				e.printStackTrace();
+			}finally{
+				con.close();
 			}
 			%>
 		</div>
 	</div>
-	
 
-<script type="text/javascript" src="js/dashboard.js"></script>
+
+	<script type="text/javascript" src="js/dashboard.js"></script>
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
