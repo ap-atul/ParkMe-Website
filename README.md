@@ -7,15 +7,15 @@
 
 
 ## Required JARs
-1. servlet-api.jar : available in tomcat lib directory
-2. mysql-connector.jar : for mysql connection
-3. commons-fileupload.jar : Apache's file upload helper
-4. commons-io.jar : another Apache jar
+1. servlet-api.jar: available in the tomcat lib directory
+2. mysql-connector.jar: for MySQL connection
+3. commons-fileupload.jar: Apache's file upload helper
+4. commons-io.jar: another Apache jar
 
 ## Executing the project
 1. Create the database according to the schema file with (username: root, password: root).
 2. Import the project as Existing Eclipse Project in Eclipse IDE
-3. Add required Build Path, if still error ocurred, add this jars to Deployment Assembly too.
+3. Add required Build Path, if still error occurred, add these jars to Deployment Assembly too.
 4. Run the project on your Tomcat Server.
 
 ## Help
