@@ -9,13 +9,9 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <!-- Bootstrap CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-	crossorigin="anonymous">
+<link rel='stylesheet' href='css/bootstrap.min.css'>
 <link rel="stylesheet" href="css/style.css" />
-<link rel='icon'
-	href='https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Hong_Kong_road_sign_%28Parking%29.svg/768px-Hong_Kong_road_sign_%28Parking%29.svg.png' />
+<link rel='icon' href='images/favicon.png' />
 
 <title>Welcome to Park Me</title>
 </head>
@@ -49,34 +45,32 @@
 	</nav>
 
 	<!-- Car Background and Cards -->
-	<div class="card bg-dark">
-		<img class="card-img" src="images/index.jpg" alt="Card image">
-		<div class="card-img-overlay">
-			<h3 class="card-title text-light font-weight-bold">Welcome to
-				ParkMe</h3>
-		</div>
-		<div class="card-img-overlay  d-none d-sm-block">
-			<div class="card hidden-xs text-primary bg-white mb-3"
-				style="margin-top: 10rem; max-width: 25rem;">
-				<div class="card-body">
-					<h5 class="card-title">Renting a Parking Space</h5>
-					<p class="card-text">Provide your own area for others to park
-						and make a earning out of it.</p>
-				</div>
-			</div>
-		</div>
-		<div class="card-img-overlay  d-none d-sm-block">
-			<div class="card hidden-xs text-primary bg-white mb-3"
-				style="margin-top: 20rem; max-width: 25rem;">
-				<div class="card-body">
-					<h5 class="card-title">Finding a Parking Space</h5>
-					<p class="card-text">Choose your respective location and select
+	<!-- Background image and name title -->
+	<section class="bg-black hero-section set-bg"
+		style="padding-top: 50px;">
+		<div class="container title text-light text-center">
+			<div class="">
+				<div class="col">
+					<div class="hero-text">
+						<h1>Welcome to ParkMe</h1>
+						<h2>Renting a Parking Space</h2>
+						<h3>Provide your own area for others to park
+						and make a earning out of it.</h3>
+						<a target="new" href="https://www.github.com/AP-Atul"><button
+								class="btn btn-dark border text-secondary-title text-white py-2 px-3">Find Space</button></a>
+								 <br />
+								
+						<h2>Finding a Parking Space</h2>
+						<h3>Choose your respective location and select
 						one of the available spaces, park your vehicle and we will take
-						care of your property.</p>
+						care of your property.</h3>
+						<a target="new" href="https://www.github.com/AP-Atul"><button
+								class="btn btn-dark border text-secondary-title text-white py-2 px-3">Rent Space</button></a>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+	</section>
 
 	<div class="container" style="margin-top: 100px;">
 		<div class="row no-gutters">
@@ -109,9 +103,9 @@
 	</div>
 
 	<!-- Contact Us -->
-	<div class="container" style="margin-top: 100px; max-width: 100%;">
+	<div class="container bg-primary" style="margin-top: 100px; max-width: 100%; padding: 10%;">
 		<div class="row justify-content-center text-center">
-			<div class="col-7 text-center mb-5">
+			<div class="col-7 text-light text-center mb-5">
 				<h2 class="card-title">Contact Us</h2>
 				<p class="card-text">For any queries, please feel free to
 					contact us using the form or the contact details!</p>
@@ -147,7 +141,7 @@
 					<div class="form-group row">
 						<div class="col-md-6 mr-auto">
 							<input type="submit"
-								class="btn btn-block btn-primary text-white py-3 px-5"
+								class="btn btn-block btn-light text-primary py-3 px-5"
 								value="Submit">
 						</div>
 					</div>
@@ -180,16 +174,8 @@
 
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-		crossorigin="anonymous"></script>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/popper.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -1,0 +1,25 @@
+.hero-section {
+    height: 800px;
+    padding-top: 335px;
+}
+
+.hero-text h1 {
+	font-size: 72px;
+    color: #ffffff;
+	font-weight: 600;
+	margin-top: 50px;
+    margin-bottom: 18px;
+    letter-spacing: 10px;
+}
+.hero-text p {
+	color: #ffffff;
+	margin-bottom: 44px;
+}
+
+.set-bg {
+    background-image: url("../images/index.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top center;
+    backdrop-filter: blur(2px);
+}

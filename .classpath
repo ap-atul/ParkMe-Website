@@ -9,27 +9,23 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="/home/atul/Application/apache-tomcat-7.0.99/lib/servlet-api.jar">
+	<classpathentry kind="lib" path="/home/atul/Application/apache-tomcat-9.0.30/lib/servlet-api.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/home/atul/Projects/Eclipse/mysql-connector.jar">
+	<classpathentry kind="lib" path="/home/atul/Projects/Eclipse/ParkMe-Website/jars/commons-fileupload-1.4.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/home/atul/Projects/Eclipse/commons-fileupload-1.4.jar">
+	<classpathentry kind="lib" path="/home/atul/Projects/Eclipse/ParkMe-Website/jars/commons-io-2.6.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/home/atul/Projects/Eclipse/commons-io-2.6.jar">
-		<attributes>
-			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="/home/atul/Projects/Eclipse/mysql-connector-java-8.0.17.jar">
+	<classpathentry kind="lib" path="/home/atul/Projects/Eclipse/ParkMe-Website/jars/mysql-connector.jar"/>
+	<classpathentry kind="lib" path="/home/atul/Projects/Eclipse/ParkMe-Website/jars/mysql-connector-java-8.0.17.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>

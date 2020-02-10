@@ -132,8 +132,6 @@ public class AddParking extends HttpServlet {
 		String city = formData.get("inputCity");
 		String state = formData.get("inputState");
 		String zip = formData.get("inputZip");
-		String lat = formData.get("lat");
-		String lng = formData.get("lng");
 		String image = imagePath;
 		String cityId = "";
 
@@ -154,15 +152,13 @@ public class AddParking extends HttpServlet {
 		// adding city entry
 		if (userId != null && image != null) {
 			statement = InitDB.getConnection().prepareStatement(
-					"INSERT INTO city(city, state, lat, lng, pincode, address) values (?, ?, ?, ?, ?, ?)",
+					"INSERT INTO city(city, state, pincode, address) values (?, ?, ?, ?)",
 					Statement.RETURN_GENERATED_KEYS);
 
 			statement.setString(1, city);
 			statement.setString(2, state);
-			statement.setString(3, lat);
-			statement.setString(4, lng);
-			statement.setString(5, zip);
-			statement.setString(6, address);
+			statement.setString(3, zip);
+			statement.setString(4, address);
 
 			int action = statement.executeUpdate();
 			ResultSet rs = statement.getGeneratedKeys();
@@ -189,7 +185,7 @@ public class AddParking extends HttpServlet {
 					String htmlMessage = "<p class='text-center text-danger'>*** Your Parking Space is registered ***</p>";
 					sc.setAttribute("rent", htmlMessage);
 
-					response.sendRedirect("rentmyspace.jsp");
+					response.sendRedirect("myparking.jsp");
 				} else {
 					String htmlMessage = "<p class='text-center text-danger'>*** Some problem occurred ***</p>";
 					sc.setAttribute("rent", htmlMessage);
