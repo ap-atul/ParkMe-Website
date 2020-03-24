@@ -25,12 +25,12 @@
 		</button>
 		<div class="navbar-collapse collapse" id="collapsingNavbar">
 			<ul class="navbar-nav">
-				<li class="nav-item active"><a class="nav-link"
+				<li class="nav-item "><a class="nav-link"
 					href="dashboard.jsp">Dashboard <span class="sr-only">(current)</span>
 				</a></li>
 				<li class="nav-item active"><a class="nav-link"
 					href="rentmyspace.jsp">Rent my space</a></li>
-				<li class="nav-item active"><a class="nav-link"
+				<li class="nav-item"><a class="nav-link"
 					href="parkmyvehicle.jsp">Park my vehicle</a></li>
 
 
@@ -47,8 +47,8 @@
 							out.println(email);
 						%><span class="caret"></span></a>
 					<ul class="dropdown-menu text-center">
-						<li><a href="#">Profile</a></li>
-						<li><a href="#">Logout</a></li>
+						<li><a href="profile.jsp">Profile</a></li>
+						<li><a href="Logout">Logout</a></li>
 					</ul>
 			</ul>
 		</div>

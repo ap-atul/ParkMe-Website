@@ -52,8 +52,8 @@
 							out.println(email);
 						%><span class="caret"></span></a>
 					<ul class="dropdown-menu text-center">
-						<li><a href="#">Profile</a></li>
-						<li><a href="#">Logout</a></li>
+						<li><a href="profile.jsp">Profile</a></li>
+						<li><a href="Logout">Logout</a></li>
 					</ul>
 			</ul>
 		</div>
@@ -70,6 +70,8 @@
 				href="currentparking.jsp">Current Parking</a></li>
 			<li class="nav-item"><a class="nav-link"
 				href="parkinghistory.jsp">Parking History</a></li>
+			<li class="nav-item"><a class="nav-link"
+				href="profile.jsp">My Profile</a></li>
 		</ul>
 	</nav>
 
