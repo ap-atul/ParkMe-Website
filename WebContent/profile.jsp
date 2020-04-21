@@ -94,7 +94,7 @@
 	<div class="card w-50">
 		<div class="row m-5 p-5">
 				<div class="col-sm">
-					<img src="<%= image %>" style="width: 150px;">
+					<img src="images/profile.jpg" style="width: 150px;">
 				</div>
 				
 				<div class="col">
