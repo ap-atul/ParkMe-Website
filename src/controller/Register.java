@@ -32,21 +32,24 @@ import db.InitDB;
 public class Register extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private PreparedStatement statement;
-	/**
-     * @see HttpServlet#HttpServlet()
-     */
-    public Register() {
-        super();
-    }
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public Register() {
+		super();
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		FileItemFactory factory = new DiskFileItemFactory();
 		ServletFileUpload upload = new ServletFileUpload(factory);
 		List<FileItem> items = null;
-		
+
 		try {
 			items = upload.parseRequest(request);
 
@@ -65,9 +68,11 @@ public class Register extends HttpServlet {
 			}
 
 			uploadImage(formData, fileData, request, response);
-			
-		}catch (Exception e) {
+
+		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			InitDB.closeConnection();
 		}
 	}
 
@@ -79,37 +84,36 @@ public class Register extends HttpServlet {
 		Iterator<FileItem> itr = fileData.iterator();
 
 		try {
-				FileItem item = (FileItem) itr.next();
-				String itemName = item.getName();
-				Random generator = new Random();
-				int r = Math.abs(generator.nextInt());
+			FileItem item = (FileItem) itr.next();
+			String itemName = item.getName();
+			Random generator = new Random();
+			int r = Math.abs(generator.nextInt());
 
-				String reg = "[.*]";
-				String replacingtext = "";
-				Pattern pattern = Pattern.compile(reg);
-				Matcher matcher = pattern.matcher(itemName);
-				StringBuffer buffer = new StringBuffer();
+			String reg = "[.*]";
+			String replacingtext = "";
+			Pattern pattern = Pattern.compile(reg);
+			Matcher matcher = pattern.matcher(itemName);
+			StringBuffer buffer = new StringBuffer();
 
-				while (matcher.find()) {
-					matcher.appendReplacement(buffer, replacingtext);
-				}
-				int IndexOf = itemName.indexOf("."); 
-				String domainName = itemName.substring(IndexOf);
-
-				finalimage = buffer.toString()+"_"+r+domainName;
-
-				path = "home/atul/Projects/1_ServerData/userImages/";
-				savedFile = new File(path +finalimage);
-				item.write(savedFile);
-				
-				if(savedFile.exists())
-					processFormData(formData, path + finalimage, request, response);
-				
-				
-			}catch (Exception e) {
-				System.out.println(e.getMessage());
+			while (matcher.find()) {
+				matcher.appendReplacement(buffer, replacingtext);
 			}
-		
+			int IndexOf = itemName.indexOf(".");
+			String domainName = itemName.substring(IndexOf);
+
+			finalimage = buffer.toString() + "_" + r + domainName;
+
+			path = "home/atul/Projects/1_ServerData/userImages/";
+			savedFile = new File(path + finalimage);
+			item.write(savedFile);
+
+			if (savedFile.exists())
+				processFormData(formData, path + finalimage, request, response);
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+
 	}
 
 	private void processFormData(HashMap<String, String> formData, String filePath, HttpServletRequest request,
@@ -120,31 +124,32 @@ public class Register extends HttpServlet {
 		String password = formData.get("password");
 		String email = formData.get("email");
 		String image = filePath;
-		
+
 		try {
-			statement = InitDB.getConnection().prepareStatement("INSERT INTO user(name, city, contact, email, password, image) VALUES(?, ?, ?, ?, ?, ?)");
+			statement = InitDB.getConnection().prepareStatement(
+					"INSERT INTO user(name, city, contact, email, password, image) VALUES(?, ?, ?, ?, ?, ?)");
 			statement.setString(1, name);
 			statement.setString(2, city);
 			statement.setString(3, contact);
 			statement.setString(4, email);
 			statement.setString(5, password);
 			statement.setString(6, image);
-			
+
 			int action = statement.executeUpdate();
-	        ServletContext sc = request.getServletContext();
-			
-			if(action > 0) {
+			ServletContext sc = request.getServletContext();
+
+			if (action > 0) {
 				String htmlMessage = "<p class='text-center text-danger'>*** Account Created. ***</p>";
-				
+
 				sc.setAttribute("messages", htmlMessage);
-		        response.sendRedirect("login.jsp");
+				response.sendRedirect("login.jsp");
 			} else {
 				String htmlMessage = "<p class='text-center text-danger'>*** Acccount Creation Failed ***</p>";
 				sc.setAttribute("messages", htmlMessage);
-		        response.sendRedirect("login.jsp#");
+				response.sendRedirect("login.jsp#");
 			}
-			
-		}catch(Exception e) {
+
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

@@ -26,45 +26,49 @@ public class GetImage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private PreparedStatement statement;
 	private ResultSet resultSet;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public GetImage() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public GetImage() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String parkingId = request.getParameter("parkingId");
 		String imagePath = null;
-		
+		InputStream is = null;
+
 		try {
 			statement = InitDB.getConnection().prepareStatement("SELECT image from parking where parkingId = ?");
 			statement.setString(1, parkingId);
-			
+
 			resultSet = statement.executeQuery();
-			if(resultSet.next()) {
+			if (resultSet.next()) {
 				imagePath = resultSet.getString("image");
 			}
-			
-			if(imagePath != null) {
-				InputStream is = new BufferedInputStream(new FileInputStream(imagePath));
-				byte[] imageData = IOUtils.toByteArray(is); 
+
+			if (imagePath != null) {
+				is = new BufferedInputStream(new FileInputStream(imagePath));
+				byte[] imageData = IOUtils.toByteArray(is);
 				response.setContentType("image/jpeg");
 				response.getOutputStream().write(imageData);
 			}
-			
+
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			if(is != null)
+				is.close();
+//			InitDB.closeConnection();
 		}
-		
-		
-		
+
 	}
 
 }

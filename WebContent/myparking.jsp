@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <%@ page import='java.sql.*'%>
 <%@ page import='java.io.*'%>
 <%@ page import='java.util.*'%>
@@ -12,13 +12,9 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <!-- Bootstrap CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-	crossorigin="anonymous">
+<link rel='stylesheet' href='css/bootstrap.min.css'>
 <link rel="stylesheet" href="css/style.css" />
-<link rel='icon'
-	href='https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Hong_Kong_road_sign_%28Parking%29.svg/768px-Hong_Kong_road_sign_%28Parking%29.svg.png' />
+<link rel='icon' href='images/favicon.png' />
 
 <title>DashBoard</title>
 </head>
@@ -47,37 +43,43 @@
 			<%session = request.getSession();
 			String email = (String)session.getAttribute("email");%>
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item active login-text"><a class="nav-link"
-					href="<%if(email == null) out.println("login.jsp"); %>"><%out.println(email); %></a></li>
+				<li class="dropdown"><a class="text-light dropdown-toggle"
+					data-toggle="dropdown" href="<%if (email == null)
+				out.println("login.jsp");%>"><%
+							out.println(email);
+						%><span class="caret"></span></a>
+					<ul class="dropdown-menu text-center">
+						<li><a href="profile.jsp">Profile</a></li>
+						<li><a href="Logout">Logout</a></li>
+					</ul>
 			</ul>
 		</div>
 	</nav>
 
 	<!--Dash Board Contents  -->
 	<nav class="navbar" style="margin-top: auto; padding: 10px;">
-	<ul class="nav nav-tabs">
-	  <li class="nav-item">
-	    <a class="nav-link" href="dashboard.jsp">My Cars</a>
-	  </li>
-	  <li class="nav-item">
-	    <a class="nav-link active" href="myparking.jsp">My Parking</a>
-	  </li>
-	  <li class="nav-item">
-	    <a class="nav-link" href="currentparking.jsp">Current Parking</a>
-	  </li>
-	  <li class="nav-item">
-	    <a class="nav-link" href="parkinghistory.jsp">Parking History</a>
-	  </li>
-	</ul>
+		<ul class="nav nav-tabs">
+			<li class="nav-item"><a class="nav-link" href="dashboard.jsp">My
+					Cars</a></li>
+			<li class="nav-item"><a class="nav-link active"
+				href="myparking.jsp">My Parking</a></li>
+			<li class="nav-item"><a class="nav-link"
+				href="currentparking.jsp">Current Parking</a></li>
+			<li class="nav-item"><a class="nav-link"
+				href="parkinghistory.jsp">Parking History</a></li>
+			<li class="nav-item"><a class="nav-link"
+				href="profile.jsp">My Profile</a></li>
+		</ul>
 	</nav>
-	
 
-		<a class="badge badge-primary" href="rentmyspace.jsp" style="margin:10px;">Click here to add new parking</a>
-		
-		<div class='container align-items-center' style="">
+
+	<a class="badge badge-primary" href="rentmyspace.jsp"
+		style="margin: 10px;">Click here to add new parking</a>
+
+	<div class='container align-items-center' style="">
 		<div class='row'>
 			<%
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/parkme?useSSL=false","root","root");
 			Cookie[] cookies = request.getCookies();
 			Cookie cookie = null;
@@ -100,7 +102,7 @@
 					ResultSet rs = statement.executeQuery();
 					while (rs.next()) {
 						out.println(
-								"<div class='card h-100' style='width: 20rem; margin: 10px;'><img src=");
+								"<div class='shadow card h-100' style='width: 20rem; margin: 10px;'><img src=");
 						out.println("'GetImage?parkingId=" + rs.getString("parkingId") + "'" + " class='card-img-top' style='height : 212px;' alt='...'><div class='card-body'><h5 class='card-title'> ");
 						out.println(rs.getString("placeName") + "</h5>");
 						out.println("<p class='text-primary'>Owner Name :- " + rs.getString("ownerName"));
@@ -114,24 +116,17 @@
 				
 			}catch (SQLException e) {
 				e.printStackTrace();
+			}finally{
+				con.close();
 			}
 			%>
 		</div>
 	</div>
 
-<script type="text/javascript" src="js/dashboard.js"></script>
+	<script type="text/javascript" src="js/dashboard.js"></script>
 	<!-- Optional JavaScript -->
-	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-		integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-		crossorigin="anonymous"></script>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/popper.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 </body>
 </html>

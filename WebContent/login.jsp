@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -19,8 +19,7 @@
 <script
 	src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<link rel='icon'
-	href='https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Hong_Kong_road_sign_%28Parking%29.svg/768px-Hong_Kong_road_sign_%28Parking%29.svg.png' />
+<link rel='icon' href='images/favicon.png' />
 
 <title>Welcome to Park Me</title>
 </head>
@@ -28,10 +27,11 @@
 	<!-- 	Navigation Bar -->
 	<nav class="navbar navbar-expand-md navbar-dark bg-primary">
 		<ul class="navbar-nav">
-				<li class="nav-item active"><a class="nav-link" href="index.jsp" style="float: left;">Park Me</a></li>
-				</ul>
+			<li class="nav-item active"><a class="nav-link" href="index.jsp"
+				style="float: left;">Park Me</a></li>
+		</ul>
 	</nav>
-	
+
 	<div class="container">
 		<div id="loginbox" style="margin-top: 50px;"
 			class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
@@ -45,7 +45,8 @@
 					<div style="display: none" id="login-alert"
 						class="alert alert-danger col-sm-12"></div>
 
-					<form id="loginform" class="form-horizontal" role="form" action="Login" method="POST">
+					<form id="loginform" class="form-horizontal" role="form"
+						action="Login" method="POST">
 
 						<div style="margin-bottom: 25px" class="input-group">
 							<span class="input-group-addon"><i
@@ -66,7 +67,7 @@
 
 							<div class="col-sm-12 controls">
 								<button id="btn-signin" type="submit" class="btn btn-info">
-									<i class="icon-hand-right"></i> Login	
+									<i class="icon-hand-right"></i> Login
 								</button>
 							</div>
 						</div>
@@ -81,14 +82,15 @@
 								</div>
 							</div>
 							<div id="content">
-							<%
-								if (application.getAttribute("messages") != null) {
-							%>
-							<%=application.getAttribute("messages")%>
-							<%
-								}
-							%>
-						</div>
+								<%
+									if (application.getAttribute("messages") != null) {
+								%>
+								<%=application.getAttribute("messages")%>
+								<%
+									application.removeAttribute("messages");
+									}
+								%>
+							</div>
 						</div>
 					</form>
 
@@ -102,7 +104,8 @@
 					<div class="panel-title font-weight-bold">Sign Up</div>
 				</div>
 				<div class="panel-body">
-					<form id="signupform" class="form-horizontal" role="form" action="Register" method="POST" enctype="multipart/form-data">
+					<form id="signupform" class="form-horizontal" role="form"
+						action="Register" method="POST" enctype="multipart/form-data">
 
 						<div id="signupalert" style="display: none"
 							class="alert alert-danger">
@@ -114,10 +117,10 @@
 							<label for="name" class="col-md-3 control-label">Name</label>
 							<div class="col-md-9">
 								<input type="text" class="form-control" name="name"
-									placeholder="Name" required> 
+									placeholder="Name" required>
 							</div>
 						</div>
-						
+
 						<div class="form-group">
 							<label for="contact" class="col-md-3 control-label">Contact</label>
 							<div class="col-md-9">
@@ -125,7 +128,7 @@
 									placeholder="Contact" required>
 							</div>
 						</div>
-						
+
 						<div class="form-group">
 							<label for="city" class="col-md-3 control-label">City</label>
 							<div class="col-md-9">
@@ -141,7 +144,7 @@
 									placeholder="Email Address" required>
 							</div>
 						</div>
-						
+
 						<div class="form-group">
 							<label for="password" class="col-md-3 control-label">Password</label>
 							<div class="col-md-9">
@@ -149,9 +152,10 @@
 									placeholder="Password" required>
 							</div>
 						</div>
-						
+
 						<div class="form-group">
-							<label for="file" class="col-md-3 control-label">Profile Image</label>
+							<label for="file" class="col-md-3 control-label">Profile
+								Image</label>
 							<div class="col-md-9">
 								<input type="file" class="form-control" name="file"
 									placeholder="Image" required>
@@ -167,7 +171,7 @@
 
 							</div>
 						</div>
-						
+
 						<div class="form-group">
 							<div class="col-md-12 control">
 								<div
@@ -177,13 +181,13 @@
 										Sign In Here </a>
 								</div>
 							</div>
-							</div>
+						</div>
 					</form>
 				</div>
 			</div>
 		</div>
 	</div>
-	
-	
+
+
 </body>
 </html>

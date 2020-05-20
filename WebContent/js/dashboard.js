@@ -4,6 +4,8 @@ window.onload = function() {
 function checkCookie() {
 	var username = getCookie("userId");
 
+	console.log(username);
+	
 	if (username == "") {
 		window.location = "login.jsp"
 	}
