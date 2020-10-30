@@ -1,0 +1,43 @@
+.title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 80%;
+    text-align: center;
+}
+
+.pink {
+    color: lightcoral;
+}
+
+.bg-black{
+    background-color: black;
+}
+
+.hero-section {
+    height: 850px;
+    padding-top: 335px;
+}
+
+.hero-text h1 {
+	font-size: 65px;
+    color: #ffffff;
+	font-weight: 600;
+	margin-top: 30px;
+    margin-bottom: 18px;
+    letter-spacing: 10px;
+}
+.hero-text p {
+	color: #ffffff;
+	margin-bottom: 44px;
+}
+
+.set-bg {
+    background-image: url("../images/index.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top center;
+    backdrop-filter: blur(1px);
+}

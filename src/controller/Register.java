@@ -23,6 +23,7 @@ import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+import constants.Constant;
 import db.InitDB;
 
 /**
@@ -82,36 +83,43 @@ public class Register extends HttpServlet {
 		String finalimage = null;
 		File savedFile = null;
 		Iterator<FileItem> itr = fileData.iterator();
-
+		
+		
 		try {
 			FileItem item = (FileItem) itr.next();
 			String itemName = item.getName();
-			Random generator = new Random();
-			int r = Math.abs(generator.nextInt());
+			System.out.println("here" + itemName);
+			if(itemName.length() == 0) {
+				processFormData(formData, "", request, response);
+			}else {
+				Random generator = new Random();
+				int r = Math.abs(generator.nextInt());
 
-			String reg = "[.*]";
-			String replacingtext = "";
-			Pattern pattern = Pattern.compile(reg);
-			Matcher matcher = pattern.matcher(itemName);
-			StringBuffer buffer = new StringBuffer();
+				String reg = "[.*]";
+				String replacingtext = "";
+				Pattern pattern = Pattern.compile(reg);
+				Matcher matcher = pattern.matcher(itemName);
+				StringBuffer buffer = new StringBuffer();
 
-			while (matcher.find()) {
-				matcher.appendReplacement(buffer, replacingtext);
+				while (matcher.find()) {
+					matcher.appendReplacement(buffer, replacingtext);
+				}
+				int IndexOf = itemName.indexOf(".");
+				String domainName = itemName.substring(IndexOf);
+
+				finalimage = buffer.toString() + "_" + r + domainName;
+
+				path = Constant.dirPath;
+				savedFile = new File(path + finalimage);
+				item.write(savedFile);
+
+				if (savedFile.exists())
+					processFormData(formData, path + finalimage, request, response);
+			
 			}
-			int IndexOf = itemName.indexOf(".");
-			String domainName = itemName.substring(IndexOf);
-
-			finalimage = buffer.toString() + "_" + r + domainName;
-
-			path = "home/atul/Projects/1_ServerData/userImages/";
-			savedFile = new File(path + finalimage);
-			item.write(savedFile);
-
-			if (savedFile.exists())
-				processFormData(formData, path + finalimage, request, response);
 
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
 
 	}

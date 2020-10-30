@@ -25,6 +25,7 @@ import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+import constants.Constant;
 import db.InitDB;
 
 /**
@@ -106,7 +107,7 @@ public class AddCar extends HttpServlet {
 
 			finalimage = buffer.toString() + "_" + r + domainName;
 
-			path = "home/atul/Projects/1_ServerData/carImages/";
+			path = Constant.dirPath;
 			savedFile = new File(path + finalimage);
 			item.write(savedFile);
 

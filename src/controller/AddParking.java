@@ -23,6 +23,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+
+import constants.Constant;
+
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.*;
 
@@ -107,7 +110,7 @@ public class AddParking extends HttpServlet {
 
 			finalimage = buffer.toString() + "_" + r + domainName;
 
-			path = "home/atul/Projects/1_ServerData/parkingImages/";
+			path = Constant.dirPath;
 			savedFile = new File(path + finalimage);
 			item.write(savedFile);
 

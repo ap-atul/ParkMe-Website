@@ -41,29 +41,31 @@ public class GetCarImage extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String parkingId = request.getParameter("carId");
-		String imagePath = null;
-		InputStream is = null;
 
-		try {
-			statement = InitDB.getConnection().prepareStatement("SELECT image FROM car WHERE carId = ?");
-			statement.setString(1, parkingId);
+		new Runnable() {
+			public void run() {
+				try {
+					statement = InitDB.getConnection().prepareStatement("SELECT image FROM car WHERE carId = ?");
+					statement.setString(1, parkingId);
 
-			resultSet = statement.executeQuery();
-			if (resultSet.next()) {
-				imagePath = resultSet.getString("image");
-				is = new BufferedInputStream(new FileInputStream(imagePath));
-				byte[] imageData = IOUtils.toByteArray(is);
-				response.setContentType("image/jpeg");
-				response.getOutputStream().write(imageData);
+					resultSet = statement.executeQuery();
+					if (resultSet.next()) {
+						String imagePath = resultSet.getString("image");
+						InputStream is = new BufferedInputStream(new FileInputStream(imagePath));
+						byte[] imageData = IOUtils.toByteArray(is);
+						response.setContentType("image/jpeg");
+						response.getOutputStream().write(imageData);
+					}
+
+				} catch (SQLException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
 			}
+		};
 
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			if(is != null)
-				is.close();
-//			InitDB.closeConnection();
-		}
 
 	}
 

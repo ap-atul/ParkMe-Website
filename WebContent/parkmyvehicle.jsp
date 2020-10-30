@@ -1,3 +1,4 @@
+<%@page import="db.InitDB"%>
 <%@ page language='java' contentType='text/html; charset=ISO-8859-1'
 	pageEncoding='ISO-8859-1'%>
 <%@ page import='java.sql.*'%>
@@ -12,14 +13,10 @@
 	content='width=device-width, initial-scale=1, shrink-to-fit=no'>
 
 <!-- Bootstrap CSS -->
-<link rel='stylesheet'
-	href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css'
-	integrity='sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm'
-	crossorigin='anonymous'>
-<link rel='stylesheet' href='css/style.css' />
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/style.css" />
+<link rel="icon" href="images/favicon.png" />
 <script src='js/location.js'></script>
-<link rel='icon'
-	href='https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Hong_Kong_road_sign_%28Parking%29.svg/768px-Hong_Kong_road_sign_%28Parking%29.svg.png' />
 
 <title>Welcome to Park Me</title>
 </head>
@@ -46,15 +43,14 @@
 			</ul>
 			<%
 				session = request.getSession();
-				String email = (String) session.getAttribute("email");
+			String email = (String) session.getAttribute("email");
 			%>
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item active login-text"><a class="nav-link"
 					href="<%if (email == null)
-				out.println("login.jsp");%>">
-						<%
-							out.println(email);
-						%>
+	out.println("login.jsp");%>"> <%
+ 	out.println(email);
+ %>
 				</a></li>
 			</ul>
 		</div>
@@ -83,27 +79,84 @@
 		</form>
 	</div>
 
-	<div class='container align-items-center'>
+	<%-- <div class='container align-items-center'>
 		<div class='row'>
 			<%
+			try{
 				if (application.getAttribute("parking") != null) {
-					ResultSet rs = (ResultSet) application.getAttribute("parking");
+				ResultSet rs = (ResultSet) application.getAttribute("parking");
+				if(rs == null) {
+					out.println("NULLLLLLLLLLLL");
+				}else{
+					out.println("NOT NULLLLLLLLLLLL");
+				}
+				while(rs.next()){
+					out.println("Getting data");
+				out.println("<div class='card h-100' style='width: 20rem; margin: 10px;'><img src=");
+				/* out.println("'GetImage?parkingId=" + rs.getString("parkingId") + "'"
+						+ " class='card-img-top' style='height : 212px;' alt='...'><div class='card-body'><h5 class='card-title'> ");
+				 */out.println(rs.getString("placeName") + "</h5>");
+				out.println("<p class='text-primary'>Owner Name :- " + rs.getString("ownerName"));
+				out.println("<br>Number of Spots :- " + rs.getString("spots"));
+				out.println("<br>Fare :- " + rs.getString("fare") + "Rs");
+				out.println("<br>Contact :- " + rs.getString("contact") + "</p>");
+				out.println("<a href='SelectCar?parkingId=" + rs.getString("parkingId")
+						+ "' class='btn btn-primary'>Book</a></div></div>");
+					}
+				rs.close();
 
+			} else {
+				out.println("<p text-primary> No Records Found </p>");
+			}
+			}catch(Exception e){
+				
+			}
+			%>
+		</div>
+	</div> --%>
+	
+	<div class='container align-items-center' style="">
+		<div class='row'>
+			<%
+			Connection con = InitDB.getConnection();
+			Cookie[] cookies = request.getCookies();
+			Cookie cookie = null;
+			String userId = null;
+			
+			if( cookies != null ) {
+				for (int i = 0; i < cookies.length; i++) {
+					cookie = cookies[i];
+					if(cookie.getName().equals("userId")) {
+						userId = cookie.getValue();
+					}
+				}
+			} 
+			try {
+				if(userId != null) {
+					PreparedStatement statement = con.prepareStatement("SELECT * from parking where userId = ?");
+					statement.setString(1, userId);
+
+
+					ResultSet rs = statement.executeQuery();
 					while (rs.next()) {
-						out.println("<div class='card h-100' style='width: 20rem; margin: 10px;'><img src=");
-						out.println("'GetImage?parkingId=" + rs.getString("parkingId") + "'"
-								+ " class='card-img-top' style='height : 212px;' alt='...'><div class='card-body'><h5 class='card-title'> ");
+						out.println(
+								"<div class='card h-100' style='width: 20rem; margin: 10px;'><img src=");
+						out.println("'GetImage?parkingId=" + rs.getString("parkingId") + "'" + " class='card-img-top' style='height : 212px;' alt='...'><div class='card-body'><h5 class='card-title'> ");
 						out.println(rs.getString("placeName") + "</h5>");
 						out.println("<p class='text-primary'>Owner Name :- " + rs.getString("ownerName"));
 						out.println("<br>Number of Spots :- " + rs.getString("spots"));
-						out.println("<br>Fare :- " + rs.getString("fare") + "Rs");
-						out.println("<br>Contact :- " + rs.getString("contact") + "</p>");
-						out.println("<a href='SelectCar?parkingId=" + rs.getString("parkingId")
-								+ "' class='btn btn-primary'>Book</a></div></div>");
+						out.println("<br>Fare :- " + rs.getString("fare")+ "Rs");
+						out.println("<br>Contact :- " + rs.getString("contact")+ "</p>");
+						out.println("<a href='SelectCar?parkingId="+ rs.getString("parkingId") +"' class='btn btn-primary'>Select Car</a></div></div>");
+						
 					}
-				} else {
-					out.println("<p text-primary> No Records Found </p>");
 				}
+				
+			}catch (SQLException e) {
+				e.printStackTrace();
+			}finally{
+				con.close();
+			}
 			%>
 		</div>
 	</div>
