@@ -26,10 +26,10 @@ public class InitDB {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static void main(String args[]) {
 		con = InitDB.getConnection();
-		if(con != null) {
+		if (con != null) {
 			System.out.println("YES");
 		}
 	}

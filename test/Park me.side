@@ -729,18 +729,8 @@
       "id": "5e788c57-6e89-4787-a023-8e268dadba88",
       "comment": "",
       "command": "setWindowSize",
-      "target": "712x625",
+      "target": "1280x720",
       "targets": [],
-      "value": ""
-    }, {
-      "id": "a2b77392-813b-48ae-af48-4885770f91be",
-      "comment": "",
-      "command": "click",
-      "target": "css=.navbar-toggler-icon",
-      "targets": [
-        ["css=.navbar-toggler-icon", "css:finder"],
-        ["xpath=//button/span", "xpath:position"]
-      ],
       "value": ""
     }, {
       "id": "0323f2c2-f7da-4d10-a112-12bc7083b565",
@@ -828,18 +818,8 @@
       "id": "069612b5-9407-4599-acce-78cbe3bf89e4",
       "comment": "",
       "command": "setWindowSize",
-      "target": "712x625",
+      "target": "1280x720",
       "targets": [],
-      "value": ""
-    }, {
-      "id": "a1e4ef68-0156-4706-97a5-a42669bb7b62",
-      "comment": "",
-      "command": "click",
-      "target": "css=.navbar-toggler-icon",
-      "targets": [
-        ["css=.navbar-toggler-icon", "css:finder"],
-        ["xpath=//button/span", "xpath:position"]
-      ],
       "value": ""
     }, {
       "id": "ba9eb1d4-6c98-431e-ac89-0547bb2757e9",
@@ -934,18 +914,8 @@
       "id": "0f5db3b2-f739-4ff4-b5f7-721c62f1d010",
       "comment": "",
       "command": "setWindowSize",
-      "target": "670x625",
+      "target": "1280x720",
       "targets": [],
-      "value": ""
-    }, {
-      "id": "0d474976-de7b-44b9-82c6-eddc62e35c61",
-      "comment": "",
-      "command": "click",
-      "target": "css=.navbar-toggler-icon",
-      "targets": [
-        ["css=.navbar-toggler-icon", "css:finder"],
-        ["xpath=//button/span", "xpath:position"]
-      ],
       "value": ""
     }, {
       "id": "07c56f71-df41-47aa-b61b-34854ff873b7",
@@ -1316,14 +1286,7 @@
       "id": "a1b3b9d9-a1e5-4878-863f-4994df44230b",
       "comment": "",
       "command": "setWindowSize",
-      "target": "670x625",
-      "targets": [],
-      "value": ""
-    }, {
-      "id": "52455cad-e5e1-447c-a8fb-ac1d4a0972f6",
-      "comment": "",
-      "command": "select",
-      "target": "css=.text-center",
+      "target": "1280x720",
       "targets": [],
       "value": ""
     }, {
@@ -1615,13 +1578,6 @@
         ["xpath=//form/button", "xpath:position"]
       ],
       "value": ""
-    }, {
-      "id": "946326ce-6e04-47d6-8756-0e1d1a197c56",
-      "comment": "",
-      "command": "css",
-      "target": "",
-      "targets": [],
-      "value": ""
     }]
   }, {
     "id": "500d9dba-6619-4a5d-a3d9-da06246a3d08",
@@ -1637,18 +1593,8 @@
       "id": "cfe90a1a-556d-47d9-8f28-4bd303b3e3bf",
       "comment": "",
       "command": "setWindowSize",
-      "target": "670x625",
+      "target": "1280x720",
       "targets": [],
-      "value": ""
-    }, {
-      "id": "c2d70d7c-69c2-4036-a3d8-ea55960bd4a9",
-      "comment": "",
-      "command": "click",
-      "target": "css=.navbar-toggler-icon",
-      "targets": [
-        ["css=.navbar-toggler-icon", "css:finder"],
-        ["xpath=//button/span", "xpath:position"]
-      ],
       "value": ""
     }, {
       "id": "86126249-424e-44c5-be5e-088085628578",
@@ -1954,18 +1900,8 @@
       "id": "56cee96f-6ccc-43ff-8fd7-986472b88ddb",
       "comment": "",
       "command": "setWindowSize",
-      "target": "670x625",
+      "target": "1280x720",
       "targets": [],
-      "value": ""
-    }, {
-      "id": "b8a8a31c-ede1-4553-8400-2c0228020899",
-      "comment": "",
-      "command": "click",
-      "target": "css=.navbar-toggler-icon",
-      "targets": [
-        ["css=.navbar-toggler-icon", "css:finder"],
-        ["xpath=//button/span", "xpath:position"]
-      ],
       "value": ""
     }, {
       "id": "fca9b390-9a2b-456c-8295-e8fe4801a51f",
@@ -2271,18 +2207,8 @@
       "id": "d2a03eed-ee71-41ed-8540-1af69be0d0f2",
       "comment": "",
       "command": "setWindowSize",
-      "target": "670x625",
+      "target": "1280x720",
       "targets": [],
-      "value": ""
-    }, {
-      "id": "1f6274c4-aa71-4f49-a812-6e747bb0ffed",
-      "comment": "",
-      "command": "click",
-      "target": "css=.navbar-toggler-icon",
-      "targets": [
-        ["css=.navbar-toggler-icon", "css:finder"],
-        ["xpath=//button/span", "xpath:position"]
-      ],
       "value": ""
     }, {
       "id": "8db577b0-4738-4aaf-908e-764a7359c441",
@@ -2588,18 +2514,8 @@
       "id": "47f7d945-fa74-4508-ba40-71b60696d9c5",
       "comment": "",
       "command": "setWindowSize",
-      "target": "670x625",
+      "target": "1280x720",
       "targets": [],
-      "value": ""
-    }, {
-      "id": "9eccc99d-273e-4fe4-9fb4-a454dc38d362",
-      "comment": "",
-      "command": "click",
-      "target": "css=.navbar-toggler-icon",
-      "targets": [
-        ["css=.navbar-toggler-icon", "css:finder"],
-        ["xpath=//button/span", "xpath:position"]
-      ],
       "value": ""
     }, {
       "id": "970a0c16-e86b-449a-8956-c93ab4eabfcc",
@@ -2905,18 +2821,8 @@
       "id": "dc1d1879-35c0-42b8-83c2-41d991e5aa84",
       "comment": "",
       "command": "setWindowSize",
-      "target": "712x625",
+      "target": "1280x720",
       "targets": [],
-      "value": ""
-    }, {
-      "id": "61c7cc60-dbd3-4f91-b0f0-7c8625c14a3b",
-      "comment": "",
-      "command": "click",
-      "target": "css=.navbar-toggler-icon",
-      "targets": [
-        ["css=.navbar-toggler-icon", "css:finder"],
-        ["xpath=//button/span", "xpath:position"]
-      ],
       "value": ""
     }, {
       "id": "dc66aa2c-7283-431e-ad7d-f7587731aa75",
@@ -3011,18 +2917,8 @@
       "id": "77cfb37f-08df-46ad-85be-b0ea0dcc2200",
       "comment": "",
       "command": "setWindowSize",
-      "target": "683x704",
+      "target": "1280x720",
       "targets": [],
-      "value": ""
-    }, {
-      "id": "ce031ff7-0959-42fd-b7c5-580d36b8cf37",
-      "comment": "",
-      "command": "click",
-      "target": "css=.navbar-toggler-icon",
-      "targets": [
-        ["css=.navbar-toggler-icon", "css:finder"],
-        ["xpath=//button/span", "xpath:position"]
-      ],
       "value": ""
     }, {
       "id": "f857e6af-18f3-4420-b07e-0a4c97d187e2",
@@ -3093,16 +2989,6 @@
         ["xpath=//form[@id='loginform']/div[3]/div/button", "xpath:idRelative"],
         ["xpath=//button", "xpath:position"],
         ["xpath=//button[contains(.,'Login')]", "xpath:innerText"]
-      ],
-      "value": ""
-    }, {
-      "id": "fabd8d06-e336-4cab-81cc-1265e8659b9f",
-      "comment": "",
-      "command": "click",
-      "target": "css=.navbar-toggler-icon",
-      "targets": [
-        ["css=.navbar-toggler-icon", "css:finder"],
-        ["xpath=//span", "xpath:position"]
       ],
       "value": ""
     }, {
@@ -3212,18 +3098,8 @@
       "id": "f0267c07-1991-44a0-b124-67824e3f8c5d",
       "comment": "",
       "command": "setWindowSize",
-      "target": "683x704",
+      "target": "1280x720",
       "targets": [],
-      "value": ""
-    }, {
-      "id": "db84e95c-9fa0-4490-a88d-81fca8fa0a57",
-      "comment": "",
-      "command": "click",
-      "target": "css=.navbar-toggler-icon",
-      "targets": [
-        ["css=.navbar-toggler-icon", "css:finder"],
-        ["xpath=//button/span", "xpath:position"]
-      ],
       "value": ""
     }, {
       "id": "030cbe32-3960-4a71-a44c-0b201262f420",
@@ -3413,18 +3289,8 @@
       "id": "d42d6c54-1144-49dd-ad26-8d7d6e8ebef1",
       "comment": "",
       "command": "setWindowSize",
-      "target": "683x704",
+      "target": "1280x720",
       "targets": [],
-      "value": ""
-    }, {
-      "id": "834e6638-5473-4576-b765-25d607ed80a3",
-      "comment": "",
-      "command": "click",
-      "target": "css=.navbar-toggler-icon",
-      "targets": [
-        ["css=.navbar-toggler-icon", "css:finder"],
-        ["xpath=//button/span", "xpath:position"]
-      ],
       "value": ""
     }, {
       "id": "f66ef067-a7da-4ff3-9dce-6fca2c6e844f",
@@ -3568,7 +3434,7 @@
       "id": "cfdfc3c0-abe1-484e-a7aa-16f52e499055",
       "comment": "",
       "command": "setWindowSize",
-      "target": "683x704",
+      "target": "1280x720",
       "targets": [],
       "value": ""
     }, {
@@ -3715,7 +3581,7 @@
       "id": "b3a27f67-de6b-4af6-b952-747a80d478be",
       "comment": "",
       "command": "setWindowSize",
-      "target": "683x704",
+      "target": "1280x720",
       "targets": [],
       "value": ""
     }, {

@@ -13,7 +13,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import java.util.*;
 
-public class AddnewparkingwrongcontactTest {
+public class AddnewparkingwrongemailTest {
 	private WebDriver driver;
 	private Map<String, Object> vars;
 	JavascriptExecutor js;
@@ -31,7 +31,7 @@ public class AddnewparkingwrongcontactTest {
 	}
 
 	@Test
-	public void addnewparkingwrongcontact() {
+	public void addnewparkingwrongemail() {
 		driver.get("http://localhost:8080/ParkMe/index.jsp");
 		driver.manage().window().setSize(new Dimension(670, 625));
 		driver.findElement(By.cssSelector(".navbar-toggler-icon")).click();
@@ -45,8 +45,8 @@ public class AddnewparkingwrongcontactTest {
 		driver.findElement(By.name("inputName")).click();
 		driver.findElement(By.name("inputName")).click();
 		driver.findElement(By.name("inputName")).sendKeys("AP");
-		driver.findElement(By.name("inputEmail")).sendKeys("atulpatare99@gmail.com");
-		driver.findElement(By.name("inputContact")).sendKeys("12345678900000");
+		driver.findElement(By.name("inputEmail")).sendKeys("atulpatare99.gmail.com");
+		driver.findElement(By.name("inputContact")).sendKeys("1234567890");
 		driver.findElement(By.name("inputSpots")).sendKeys("11");
 		driver.findElement(By.name("inputFare")).sendKeys("1234");
 		driver.findElement(By.name("inputPlaceName")).sendKeys("Shopping Mall");

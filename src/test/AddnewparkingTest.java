@@ -23,7 +23,7 @@ import org.openqa.selenium.Keys;
 import java.util.*;
 import java.net.MalformedURLException;
 import java.net.URL;
-public class AddnewcarwrongidTest {
+public class AddnewparkingTest {
   private WebDriver driver;
   private Map<String, Object> vars;
   JavascriptExecutor js;
@@ -38,21 +38,31 @@ public class AddnewcarwrongidTest {
     driver.quit();
   }
   @Test
-  public void addnewcarwrongid() {
+  public void addnewparking() {
     driver.get("http://localhost:8080/ParkMe/index.jsp");
     driver.manage().window().setSize(new Dimension(1280, 720));
     driver.findElement(By.linkText("Login")).click();
     driver.findElement(By.id("login-username")).click();
     driver.findElement(By.id("login-username")).sendKeys("atulpatare99@gmail.com");
     driver.findElement(By.id("login-password")).sendKeys("atul");
-    driver.findElement(By.id("btn-signin")).click();
-    driver.findElement(By.cssSelector(".badge")).click();
+    driver.findElement(By.id("login-password")).sendKeys(Keys.ENTER);
+    driver.findElement(By.cssSelector(".nav > .nav-item:nth-child(2) > .nav-link")).click();
+    driver.findElement(By.linkText("Click here to add new parking")).click();
     driver.findElement(By.name("inputName")).click();
-    driver.findElement(By.name("inputName")).sendKeys("Mercedes M11");
-    driver.findElement(By.name("inputPlate")).click();
-    driver.findElement(By.name("inputPlate")).sendKeys("NH 17dnsndsmndms");
+    driver.findElement(By.name("inputName")).click();
+    driver.findElement(By.name("inputName")).sendKeys("AP");
+    driver.findElement(By.name("inputEmail")).sendKeys("atulpatare99@gmail.com");
+    driver.findElement(By.name("inputContact")).sendKeys("1234567890");
+    driver.findElement(By.name("inputSpots")).sendKeys("11");
+    driver.findElement(By.name("inputFare")).sendKeys("1234");
+    driver.findElement(By.name("inputPlaceName")).sendKeys("Shopping Mall");
+    driver.findElement(By.name("inputAddress")).sendKeys("1234 Main St");
+    driver.findElement(By.name("inputAddress2")).sendKeys("Apartment, behind road 1");
+    driver.findElement(By.name("inputCity")).sendKeys("Pune");
+    driver.findElement(By.name("inputState")).sendKeys("Maharashtra");
+    driver.findElement(By.name("inputZip")).sendKeys("123333");
+    driver.findElement(By.id("image")).sendKeys(Keys.ENTER);
+    driver.findElement(By.name("inputZip")).sendKeys("1233333");
     driver.findElement(By.cssSelector(".btn")).click();
-    assertThat(driver.findElement(By.cssSelector(".text-center")).getText(), is("*** Car Creation Failed ***"));
-    
   }
 }
