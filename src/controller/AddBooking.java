@@ -53,7 +53,7 @@ public class AddBooking extends HttpServlet {
 				}
 			}
 		}
-
+		
 		try {
 			totalPrice = calculatePrice(parkingId, inputHour);
 

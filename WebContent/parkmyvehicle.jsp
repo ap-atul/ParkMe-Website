@@ -42,14 +42,14 @@
 
 			</ul>
 			<%
-				session = request.getSession();
+			session = request.getSession();
 			String email = (String) session.getAttribute("email");
 			%>
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item active login-text"><a class="nav-link"
 					href="<%if (email == null)
 	out.println("login.jsp");%>"> <%
- 	out.println(email);
+ out.println(email);
  %>
 				</a></li>
 			</ul>
@@ -58,7 +58,7 @@
 
 	<!--  Search bar -->
 	<div class='container border-bottom pt-5' style='padding: 10px;'>
-		<form action='Search' method='POST'>
+		<form action='parkmyvehicle.jsp' method='GET'>
 			<div class='form-row'>
 				<div class='form-group col-md-4'>
 					<input type='text' placeholder='411043' class='form-control'
@@ -79,87 +79,81 @@
 		</form>
 	</div>
 
-	<%-- <div class='container align-items-center'>
+	<div class='container align-items-center'>
 		<div class='row'>
 			<%
-			try{
-				if (application.getAttribute("parking") != null) {
-				ResultSet rs = (ResultSet) application.getAttribute("parking");
-				if(rs == null) {
-					out.println("NULLLLLLLLLLLL");
-				}else{
-					out.println("NOT NULLLLLLLLLLLL");
-				}
-				while(rs.next()){
-					out.println("Getting data");
-				out.println("<div class='card h-100' style='width: 20rem; margin: 10px;'><img src=");
-				/* out.println("'GetImage?parkingId=" + rs.getString("parkingId") + "'"
-						+ " class='card-img-top' style='height : 212px;' alt='...'><div class='card-body'><h5 class='card-title'> ");
-				 */out.println(rs.getString("placeName") + "</h5>");
-				out.println("<p class='text-primary'>Owner Name :- " + rs.getString("ownerName"));
-				out.println("<br>Number of Spots :- " + rs.getString("spots"));
-				out.println("<br>Fare :- " + rs.getString("fare") + "Rs");
-				out.println("<br>Contact :- " + rs.getString("contact") + "</p>");
-				out.println("<a href='SelectCar?parkingId=" + rs.getString("parkingId")
-						+ "' class='btn btn-primary'>Book</a></div></div>");
-					}
-				rs.close();
-
-			} else {
-				out.println("<p text-primary> No Records Found </p>");
-			}
-			}catch(Exception e){
-				
-			}
-			%>
-		</div>
-	</div> --%>
-	
-	<div class='container align-items-center' style="">
-		<div class='row'>
-			<%
-			Connection con = InitDB.getConnection();
-			Cookie[] cookies = request.getCookies();
-			Cookie cookie = null;
-			String userId = null;
+			String pincode = request.getParameter("inputPincode");
+			String city = request.getParameter("inputCity");
+			String lat = request.getParameter("lat");
+			String lng = request.getParameter("lng");
 			
-			if( cookies != null ) {
-				for (int i = 0; i < cookies.length; i++) {
-					cookie = cookies[i];
-					if(cookie.getName().equals("userId")) {
-						userId = cookie.getValue();
-					}
-				}
-			} 
-			try {
-				if(userId != null) {
-					PreparedStatement statement = con.prepareStatement("SELECT * from parking where userId = ?");
-					statement.setString(1, userId);
+			if(pincode == null)
+				return;
+			
+			else {
+				Connection con = (Connection) InitDB.getConnection();
+				List<String> cityId = new ArrayList<String>();
+				PreparedStatement statement;
+				try {
+					if (lat != "" && lng != "") {
+						statement = con.prepareStatement(
+								"SELECT cityId, (6371 *  acos(cos(radians(?)) * cos(radians(lat)) * cos(radians(lng) -  radians(?)) + sin(radians(?)) *  sin(radians(lat ))) ) AS distance FROM city HAVING distance < 45 ORDER BY distance LIMIT 0, 20");
 
+						statement.setString(1, lat);
+						statement.setString(2, lng);
+						statement.setString(3, lat);
+					} else {
+						statement = con
+								.prepareStatement("SELECT cityId FROM city WHERE city LIKE '%'?'%' OR pincode = ?");
+
+						statement.setString(1, city);
+						statement.setString(2, pincode);
+					}
 
 					ResultSet rs = statement.executeQuery();
 					while (rs.next()) {
-						out.println(
-								"<div class='card h-100' style='width: 20rem; margin: 10px;'><img src=");
-						out.println("'GetImage?parkingId=" + rs.getString("parkingId") + "'" + " class='card-img-top' style='height : 212px;' alt='...'><div class='card-body'><h5 class='card-title'> ");
-						out.println(rs.getString("placeName") + "</h5>");
-						out.println("<p class='text-primary'>Owner Name :- " + rs.getString("ownerName"));
-						out.println("<br>Number of Spots :- " + rs.getString("spots"));
-						out.println("<br>Fare :- " + rs.getString("fare")+ "Rs");
-						out.println("<br>Contact :- " + rs.getString("contact")+ "</p>");
-						out.println("<a href='SelectCar?parkingId="+ rs.getString("parkingId") +"' class='btn btn-primary'>Select Car</a></div></div>");
-						
+						cityId.add(rs.getString("cityId"));
 					}
+
+					if (cityId.size() > 0) {
+						String sql = "SELECT * FROM parking WHERE cityId =";
+
+						for (int i = 0; i < cityId.size() - 1; i++) {
+							sql = sql + cityId.get(i) + " OR cityId = ";
+						}
+						sql = sql + cityId.get(cityId.size() - 1);
+
+						statement = con.prepareStatement(sql);
+						rs = statement.executeQuery();
+						
+						while (rs.next()) { 
+							out.println("<div class='card h-100' style='width: 20rem; margin: 10px;'><img src=");
+							out.println("'GetImage?parkingId=" + rs.getString("parkingId") + "'"
+									+ " class='card-img-top' style='height : 212px;' alt='...'><div class='card-body'><h5 class='card-title'> ");
+							out.println(rs.getString("placeName") + "</h5>");
+							out.println("<p class='text-primary'>Owner Name :- " + rs.getString("ownerName"));
+							out.println("<br>Number of Spots :- " + rs.getString("spots"));
+							out.println("<br>Fare :- " + rs.getString("fare") + "Rs");
+							out.println("<br>Contact :- " + rs.getString("contact") + "</p>");
+							out.println("<a href='SelectCar?parkingId=" + rs.getString("parkingId")
+									+ "' class='btn btn-primary'>Book</a></div></div>");
+						} 
+						rs.close();
+						
+					} else {
+						out.println("<p text-primary> No Records Found </p>");
+					}
+
+				} catch (SQLException e) {
+					e.printStackTrace();
+				} finally {
+					InitDB.closeConnection();
 				}
-				
-			}catch (SQLException e) {
-				e.printStackTrace();
-			}finally{
-				con.close();
 			}
 			%>
 		</div>
 	</div>
+
 
 	<script type="text/javascript" src="js/dashboard.js"></script>
 	<!-- Optional JavaScript -->

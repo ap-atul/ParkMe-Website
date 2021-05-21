@@ -82,6 +82,7 @@ public class Search extends HttpServlet {
 				rs = statement.executeQuery();
 
 				sc.setAttribute("parking", rs);
+				
 				response.sendRedirect("parkmyvehicle.jsp");
 			} else {
 				response.sendRedirect("parkmyvehicle.jsp");
